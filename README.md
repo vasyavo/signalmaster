@@ -1,4 +1,13 @@
-# signalmaster
+# signalmaster + Xirsys
+
+Individualized credentials per client connection; requested from the Xirsys Restful API.
+
+## Setup
+
+1) Configure signalmaster server to run over HTTPS
+2) Apply the Xirsys API Path/Gateway and Account Info development.json and production.json files.
+
+## signalmaster
 
 A simple signaling server for clients to connect and do signaling for WebRTC.
 
