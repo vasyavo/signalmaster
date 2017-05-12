@@ -1,6 +1,6 @@
 # signalmaster + Xirsys
 
-Individualized credentials per client connection; requested from the Xirsys Restful API.
+Individualized credentials per client connection; requested from the Xirsys Restful API v3.
 
 ## Setup
 
