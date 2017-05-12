@@ -20,7 +20,12 @@ if (config.server.secure) {
 } else {
     server = require('http').Server(server_handler);
 }
-server.listen(port);
+server.listen(port, function(err) {
+    if (err) {
+        throw err
+    }
+    console.log(yetify.logo() + ' -- signal master is running at: ' + httpUrl);
+});
 
 sockets(server, config);
 
@@ -32,4 +37,4 @@ if (config.server.secure) {
 } else {
     httpUrl = "http://localhost:" + port;
 }
-console.log(yetify.logo() + ' -- signal master is running at: ' + httpUrl);
+

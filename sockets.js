@@ -1,9 +1,11 @@
 var socketIO = require('socket.io'),
     uuid = require('node-uuid'),
     crypto = require('crypto');
+var https = require("https");
 
 module.exports = function (server, config) {
     var io = socketIO.listen(server);
+    var xirsys = config.xirsys;
 
     io.sockets.on('connection', function (client) {
         client.resources = {
@@ -11,7 +13,7 @@ module.exports = function (server, config) {
             video: true,
             audio: false
         };
-
+        console.log(options);
         // pass a message to another id
         client.on('message', function (details) {
             if (!details) return;
@@ -100,14 +102,14 @@ module.exports = function (server, config) {
 
 
         // tell client about stun and turn servers and generate nonces
-        client.emit('stunservers', config.stunservers || []);
+        //client.emit('stunservers', config.stunservers || []);
 
         // create shared secret nonces for TURN authentication
         // the process is described in draft-uberti-behave-turn-rest
         var credentials = [];
         // allow selectively vending turn credentials based on origin.
         var origin = client.handshake.headers.origin;
-        if (!config.turnorigins || config.turnorigins.indexOf(origin) !== -1) {
+        /*if (!config.turnorigins || config.turnorigins.indexOf(origin) !== -1) {
             config.turnservers.forEach(function (server) {
                 var hmac = crypto.createHmac('sha1', server.secret);
                 // default to 86400 seconds timeout unless specified
@@ -119,8 +121,39 @@ module.exports = function (server, config) {
                     urls: server.urls || server.url
                 });
             });
-        }
-        client.emit('turnservers', credentials);
+        }*/
+
+        var options = {
+            host: xirsys.gateway,
+            path: "/_turn/"+xirsys.info.channel,
+            method: "PUT",
+            headers: {
+                "Authorization": "Basic " + new Buffer( xirsys.info.ident+":"+xirsys.info.secret ).toString("base64")
+            }
+        };
+
+        var httpreq = https.request(options, function(httpres) {
+            var str = "";
+            httpres.on("data", function(data){ str += data; });
+            httpres.on("error", function(e){ console.log("error: ",e); });
+            httpres.on("end", function(){
+                //console.log("response: ", str);
+                var result = JSON.parse(str);
+                var iceServers = result.v.iceServers;
+                var turnservers = [],
+                    stunservers = [];
+                iceServers.forEach(function (server) {
+                    if(server.url.indexOf(":stun") != -1){
+                        stunservers.push(server);
+                    }else{
+                        turnservers.push(server);
+                    }
+                });
+                client.emit('stunservers', stunservers || []);
+                client.emit('turnservers', turnservers);
+            });
+        });
+        httpreq.end();
     });
 
 

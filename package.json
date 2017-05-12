@@ -20,6 +20,8 @@
   },
   "license": "MIT",
   "scripts": {
-    "test": "node test.js"
+    "test": "node test.js",
+    "start": "node server.js",
+    "myinstall": "npm install"
   }
 }
