@@ -143,7 +143,7 @@ module.exports = function (server, config) {
                 var turnservers = [],
                     stunservers = [];
                 iceServers.forEach(function (server) {
-                    if(server.url.indexOf(":stun") != -1){
+                    if(server.url.indexOf("stun:") != -1){
                         stunservers.push(server);
                     }else{
                         turnservers.push(server);
