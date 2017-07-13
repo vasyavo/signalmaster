@@ -1,4 +1,5 @@
 var https = require("https");
+var config = require("getconfig");
 
 module.exports = {
     getIceServers: function (client, cb) {
