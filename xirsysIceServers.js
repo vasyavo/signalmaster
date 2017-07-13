@@ -1,7 +1,7 @@
 var https = require("https");
 
 module.exports = {
-    getIceServers: function (client, config, cb) {
+    getIceServers: function (client, cb) {
         var xirsys = config.xirsys;
         var options = {
             host: xirsys.gateway,
@@ -26,7 +26,7 @@ module.exports = {
 
                 var turnservers = [],
                     stunservers = [];
-                if (result.s != 'success') {
+                if (result.s != 'ok') {
                     
                 } else {
                     iceServers.forEach(function (server) {
