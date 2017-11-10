@@ -17,8 +17,7 @@
     "info": {
       "ident": "",
       "secret": "",
-      "channel": "",
-      "secure": "true"
+      "channel": ""
     }
   },
   "stunservers": [
