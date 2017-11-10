@@ -4,7 +4,7 @@ Individualized credentials per client connection; requested from the Xirsys Rest
 
 ## Setup
 
-1) Apply the Xirsys API Path/Gateway and Account Info development.json and production.json files.
+1) Apply the Xirsys API Path/Gateway and Account Info to the development.json and production.json files.
 2) Configure signalmaster server to run over HTTPS
 
 ## signalmaster
