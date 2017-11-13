@@ -13,7 +13,7 @@
     "maxClients": 0
   },
   "xirsys": {
-    "gateway": "es.xirsys.com",
+    "gateway": "global.xirsys.net",
     "info": {
       "ident": "",
       "secret": "",
