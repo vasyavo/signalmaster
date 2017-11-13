@@ -2,11 +2,6 @@
 
 Individualized credentials per client connection; requested from the Xirsys Restful API v3.
 
-## Setup
-
-1) Apply the Xirsys API Path/Gateway and Account Info to the development.json and production.json files.
-2) Configure signalmaster server to run over HTTPS
-
 ## signalmaster
 
 A simple signaling server for clients to connect and do signaling for WebRTC.
@@ -19,6 +14,12 @@ Read more:
  - [Introducing SimpleWebRTC and conversat.io](http://blog.andyet.com/2013/02/22/introducing-simplewebrtcjs-and-conversatio/)
  - [SimpleWebRTC.com](http://simplewebrtc.com)
  - [talky.io](https://talky.io)
+ 
+ ## Setup
+
+1) Follow the instructions below to set up and run your SignalMaster server.
+1) Apply the Xirsys API Path/Gateway and Account Info to the development.json and production.json files.
+2) Configure SignalMaster server to run over HTTPS.,
 
 ## Running
 
@@ -60,7 +61,7 @@ $ NODE_ENV=production node server.js
 
 You can build this image by calling:  
 
-    docker build -t signalmaster https://github.com/andyet/signalmaster.git
+    docker build -t signalmaster https://github.com/xirdev/signalmaster.git
 
 To run the image execute this:  
 
