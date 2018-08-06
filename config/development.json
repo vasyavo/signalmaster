@@ -15,9 +15,9 @@
   "xirsys": {
     "gateway": "global.xirsys.net",
     "info": {
-      "ident": "",
-      "secret": "",
-      "channel": ""
+      "ident": "vasyok",
+      "secret": "ec957592-96f9-11e8-85eb-2cd1a5a09ae3",
+      "channel": "MyFirstApp"
     }
   },
   "stunservers": [
